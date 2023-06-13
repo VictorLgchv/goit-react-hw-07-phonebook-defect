@@ -7,7 +7,7 @@ import { Section } from './Section/Section';
 import { useLocalStorage } from './hooks/hooks';
 
 export function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts', '');
+  const [contacts, setContacts] = useLocalStorage('contacts', []);
   const [filter, setFilter] = useState('');
 
   const formSubmitHandler = data => {
@@ -31,13 +31,14 @@ export function App() {
   };
 
   const deleteItem = itemId => {
-    setContacts((prevState) => prevState.filter(contact => contact.id !== itemId));
+    setContacts(prevState =>
+      prevState.filter(contact => contact.id !== itemId)
+    );
   };
 
   useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts))
-  }, [contacts])
-
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const onFilterName = onFilterForm();
 
