@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilter } from 'redux/selectors';
 import { setFilter } from 'redux/filterSlice';
+import { Div, Input, Label } from './Filter.syled';
 
 const filterId = nanoid();
 
@@ -12,11 +13,11 @@ const Filter = () => {
   const handleFilterChange = e => dispatch(setFilter(e.target.value));
 
   return (
-    <div>
-      <label htmlFor={filterId}>
+    <Div>
+      <Label htmlFor={filterId}>
         Find contacts by name
-      </label>
-      <input
+      </Label>
+      <Input
         type="text"
         name="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -26,7 +27,7 @@ const Filter = () => {
         onChange={handleFilterChange}
         id={filterId}
       />
-    </div>
+    </Div>
   );
 };
 export default Filter;
