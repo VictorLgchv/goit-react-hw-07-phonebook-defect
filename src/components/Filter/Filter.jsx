@@ -1,30 +1,32 @@
 import { nanoid } from 'nanoid';
-import { Div } from './Filter.syled';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from 'redux/selectors';
+import { setFilter } from 'redux/filterSlice';
 
-const formId = nanoid();
+const filterId = nanoid();
 
-export const Filter = ({ value, filter }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+
+  const handleFilterChange = e => dispatch(setFilter(e.target.value));
+
   return (
-    <Div>
-      <label htmlFor={formId}>Find contacts by name</label>
+    <div>
+      <label htmlFor={filterId}>
+        Find contacts by name
+      </label>
       <input
         type="text"
-        name="name"
+        name="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
-        value={value}
-        onChange={filter}
-        id={formId}
+        value={filter}
+        onChange={handleFilterChange}
+        id={filterId}
       />
-
-      <br />
-    </Div>
+    </div>
   );
 };
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  filter: PropTypes.func.isRequired,
-};
+export default Filter;
