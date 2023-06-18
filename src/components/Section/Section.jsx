@@ -1,9 +1,20 @@
-import {Div} from './Section.styled'
+import PropTypes from 'prop-types';
+import Container from 'components/Container/Container';
 
-export const Section = ({ children }) => {
+const Section = ({ title, children }) => {
   return (
-    <Div>
-      {children}
-    </Div>
-  )
-}
+    <div>
+      <Container>
+        <h2>{title}</h2>
+        {children}
+      </Container>
+    </div>
+  );
+};
+
+export default Section;
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.any,
+};
