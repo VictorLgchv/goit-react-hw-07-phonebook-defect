@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { Div } from './Container.styled';
 
 const Container = ({ children }) => {
-  return <div>{children}</div>;
+  return <Div>{children}</Div>;
 };
 
 export default Container;
