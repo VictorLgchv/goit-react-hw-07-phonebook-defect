@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
 import { getContacts } from 'redux/selectors';
 
+import { FormStyled, Input, Label, Btn } from './Form.styled'
+
 export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -54,12 +56,12 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor={nameInputId}>
+    <FormStyled onSubmit={handleSubmit}>
+      <Label htmlFor={nameInputId}>
         Name
-      </label>
+      </Label>
 
-      <input
+      <Input
         type="text"
         name="name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -70,10 +72,10 @@ export default function Form() {
         id={nameInputId}
       />
 
-      <label htmlFor={numberInputId}>
+      <Label htmlFor={numberInputId}>
         Number
-      </label>
-      <input
+      </Label>
+      <Input
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -84,9 +86,9 @@ export default function Form() {
         id={numberInputId}
       />
 
-      <button type="submit">
+      <Btn type="submit">
         Add contact
-      </button>
-    </form>
+      </Btn>
+    </FormStyled>
   );
 }
